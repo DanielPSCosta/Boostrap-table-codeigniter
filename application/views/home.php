@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Hello, Bootstrap Table!</title>
 
-
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="//code.jquery.com/jquery-3.6.1.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
@@ -23,8 +23,11 @@
 
           clicando();
         } else {
-          $('#PrimeiraParte').removeClass('d-none')
-          $('#SegundaParte').addClass('d-none')
+          $('#PrimeiraParte').removeClass('d-none');
+          $('#SegundaParte').addClass('d-none');
+          swal("Senha invalida!");
+
+
         }
       })
     }
@@ -155,28 +158,28 @@
 
 
 
-  <div class="card text-white bg-secondary mb-3 mt-5" id="PrimeiraParte"  style="max-width: 22rem; margin-left: 35%">
+  <div class="card text-white bg-secondary mb-3 mt-5" id="PrimeiraParte" style="max-width: 22rem; margin-left: 35%">
     <div class="card-header">Conta</div>
     <div class="card-body">
-        <div class="container">
-          <div class="row">
-            <div class="col-12">
-              <Label>login</Label>
-              <input type="text" class="form-control" id="login" placeholder="Digite seu login">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12">
-              <Label>Senha</Label>
-              <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12 mt-2">
-              <button class="btn btn-primary" onclick="acesso()">Acessar</button>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <Label>login</Label>
+            <input type="text" class="form-control" id="login" placeholder="Digite seu login">
           </div>
         </div>
+        <div class="row">
+          <div class="col-12">
+            <Label>Senha</Label>
+            <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 mt-2">
+            <button class="btn btn-primary" onclick="acesso()">Acessar</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
