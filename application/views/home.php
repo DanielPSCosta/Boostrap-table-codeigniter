@@ -28,99 +28,40 @@
           $('#SegundaParte').addClass('d-none');
           swal("Senha invalida!");
           swal("Atenção!", "Login ou senha esta incorreta!", "info");
-
-
         }
       })
     }
 
     function clicando() {
-      var retorno = [{
-          "nome": 'Daniel',
-          "idade": '25',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de sistemas'
-        },
-        {
-          "nome": 'Bruno',
-          "idade": '21',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de suporte'
-        },
 
-        {
-          "nome": 'Mauricio',
-          "idade": '28',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
-        },
 
-        {
-          "nome": 'Bruno',
-          "idade": '22',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
-        },
+      $.ajax({
+        url: "//localhost/Boostrap_table-main/index.php/Home/busca",
+        type: "POST",
+        dataType: 'json',
+        data: {},
+        success: function(data) {
+          console.log(data);
 
-        {
-          "nome": 'Vinicius',
-          "idade": '19',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
-        },
+          $("#table").bootstrapTable('removeAll');
+          $("#table").bootstrapTable('append', data);
 
-        {
-          "nome": 'Fernando',
-          "idade": '19',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
         },
+      });
 
-        {
-          "nome": 'Mauricio',
-          "idade": '28',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
-        },
 
-        {
-          "nome": 'Mauricio',
-          "idade": '28',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
-        },
 
-        {
-          "nome": 'Mauricio',
-          "idade": '28',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
-        },
 
-        {
-          "nome": 'Mauricio',
-          "idade": '28',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
-        },
 
-        {
-          "nome": 'Mauricio',
-          "idade": '28',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
-        },
 
-        {
-          "nome": 'Mauricio',
-          "idade": '28',
-          "cpf": '000-000-000-00',
-          "Prof": 'Analista de infraestrutura'
-        },
-      ]
-
-      $("#table").bootstrapTable('removeAll');
-      $("#table").bootstrapTable('append', retorno);
+      ///////////////////////////////////////////
+      //Caso seja necessario um retorno sem Ajax
+      ///////////////////////////////////////////
+      // $.post("index.php/Home/busca", {
+      // }, function(data) {
+      //   $("#table").bootstrapTable('removeAll');
+      //   $("#table").bootstrapTable('append', JSON.parse(data));
+      // })
 
     }
 
@@ -128,7 +69,7 @@
       return '<button class="btn btn-primary" onclick="Editar(\'' + value + '\',\'' + row.idade + '\',\'' + row.Prof + '\',\'' + row.cpf + '\')"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar </button>';
     }
 
-    function Editar(value, idade, professor,cpf) {
+    function Editar(value, idade, professor, cpf) {
       $('#exampleModalLong').modal('show');
 
       $('#nome').val(value);
@@ -167,15 +108,10 @@
   <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.css">
 </head>
 
-<body style="background-image: url('application/controllers/imagem.jpg')">
+<body style="overflow: visible;">
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand" href="#">Empresa</a>
   </nav>
-
-
-
-
-
 
   <div class="card text-white bg-secondary mb-3 mt-5" id="PrimeiraParte" style="max-width: 22rem; margin-left: 35%">
     <div class="card-header">Conta</div>
