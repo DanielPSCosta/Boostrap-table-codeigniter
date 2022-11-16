@@ -3,7 +3,7 @@ Projeto
 ##################
 Para executar o projeto é necessário o download do sistema Xampp.
 
-Insira o projeto na pasta C:\xampp\htdocs.
+Insira o projeto na pasta C:\\xampp\\htdocs.
 
 Em seguida entre no navegador e insira na URL: http://localhost/Boostrap-table-codeigniter-main/Boostrap-table-codeigniter-main/
 
