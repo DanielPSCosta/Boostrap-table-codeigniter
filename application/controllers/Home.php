@@ -19,4 +19,11 @@ class Home extends CI_Controller
 
 		echo $retorno;
 	}
+
+	public function busca()
+	{
+		$this->load->model('M_busca');
+		$retorno = $this->M_busca->busca();
+		echo json_encode($retorno);
+	}
 }
