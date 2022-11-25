@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <!-- Required meta tags -->
@@ -33,26 +33,21 @@
     }
 
     function clicando() {
-
-
       $.ajax({
-        url: "//localhost/Boostrap_table-main/index.php/Home/busca",
+        /////////////////////////////////////////////////////////////////////////////////////
+        //// Caso renomeie o nome do arquivo principal deve ser alterado na URL abaixo.  ////
+        /////////////////////////////////////////////////////////////////////////////////////
+        url: "//localhost/table/index.php/Home/busca",
         type: "POST",
         dataType: 'json',
         data: {},
         success: function(data) {
-          console.log(data);
 
           $("#table").bootstrapTable('removeAll');
           $("#table").bootstrapTable('append', data);
 
         },
       });
-
-
-
-
-
 
       ///////////////////////////////////////////
       //Caso seja necessario um retorno sem Ajax
@@ -66,16 +61,18 @@
     }
 
     function EditarItem(value, row) {
-      return '<button class="btn btn-primary" onclick="Editar(\'' + value + '\',\'' + row.idade + '\',\'' + row.Prof + '\',\'' + row.cpf + '\')"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar </button>';
+      return '<button class="btn btn-primary" onclick="Editar(\'' + value + '\',\'' + row.idade + '\',\'' + row.Prof + '\',\'' + row.cpf + '\',\'' + row.registro + '\',\'' + row.setor + '\')"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar </button>';
     }
 
-    function Editar(value, idade, professor, cpf) {
+    function Editar(value, idade, professor, cpf, registro, setor) {
       $('#exampleModalLong').modal('show');
 
       $('#nome').val(value);
       $('#idade').val(idade);
       $('#profissao').val(professor);
       $('#cpf').val(cpf);
+      $('#registro').val(registro);
+      $('#setor').val(setor);
     }
 
     function fechar() {
@@ -101,6 +98,11 @@
     function SalvarEdit() {
       swal("OK!", "Salvo com sucesso!", "success");
     }
+
+    function Sair() {
+      $('#PrimeiraParte').removeClass('d-none');
+      $('#SegundaParte').addClass('d-none');
+    }
   </script>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -108,15 +110,34 @@
   <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.21.1/dist/bootstrap-table.min.css">
 </head>
 
+<div class="circle-bcgd" style="    
+    background: #6360601a;
+    border-top-left-radius: 80%;
+    height: 100%;
+    padding-top: 50%;
+    padding-bottom: 50%;
+    padding-left: 50%;
+    padding-right: 50%;
+    position: fixed;
+    z-index: -1; margin-left:25%;"></div>
+
 <body style="overflow: visible;">
-  <nav class="navbar navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="box-shadow: 1px 1px 5px #e6e6e6;">
     <a class="navbar-brand" href="#">Empresa</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button class="btn btn-outline-danger nav-item nav-link active" onclick="Sair()">Sair</button>
+    </form>
   </nav>
 
-  <div class="card text-white bg-secondary mb-3 mt-5" id="PrimeiraParte" style="max-width: 22rem; margin-left: 35%">
-    <div class="card-header">Conta</div>
+  <div class="card mb-3 mt-5 " id="PrimeiraParte" style="max-width: 22rem; margin-left: 35%">
+    <div class="card-header">Logo Empresa</div>
     <div class="card-body">
-      <div class="container">
+      <div class="container shadow p-4 mb-2 bg-white rounded">
         <div class="row">
           <div class="col-12">
             <Label>login</Label>
@@ -140,16 +161,18 @@
 
   <div id="SegundaParte" class="d-none">
 
-    <div class="container">
+    <div class="container-fluid shadow p-4 mb-5 bg-white rounded mt-5">
       <div class="col-12">
         <table id="table" data-toolbar="#toolbar" data-toggle="table" data-detail-formatter="detailFormatterusuario" data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, all]" class="table table-dark" data-search="true">
           <thead>
             <tr>
-              <th data-field="nome" data-align="center">Nome</th>
-              <th data-field="idade" data-align="center">Idade</th>
+              <th data-field="registro" data-align="center">REGISTRO</th>
+              <th data-field="nome" data-align="center">NOME</th>
+              <th data-field="idade" data-align="center">IDADE</th>
               <th data-field="cpf" data-align="center">CPF</th>
-              <th data-field="Prof" data-align="center">Profissão</th>
-              <th data-field="nome" data-align="center" data-formatter="EditarItem">Editar</th>
+              <th data-field="Prof" data-align="center">PROFISSÃO</th>
+              <th data-field="setor" data-align="center">SETOR</th>
+              <th data-field="nome" data-align="center" data-formatter="EditarItem">EDITAR</th>
             </tr>
           </thead>
         </table>
@@ -160,29 +183,44 @@
   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">FUNCIONARIO</h5>
-          <button type="button" class="close" data-dismiss="modal" onclick="fechar()">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title" id="htexto">FUNCIONARIO</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
           <div class="row">
-            <div class="col-4">
+            <div class="col-6">
+              <label>NOME:</label>
               <input type="text" class="form-control" id="nome">
             </div>
             <div class="col-2">
+              <label>IDADE:</label>
               <input type="text" class="form-control" id="idade">
             </div>
-            <div class="col-3">
+            <div class="col-4">
+              <label>CPD:</label>
               <input type="text" class="form-control" id="cpf">
             </div>
-            <div class="col-3">
+          </div>
+          <div class="row mt-3">
+            <div class="col-5">
+              <label>PROFISSÃO:</label>
               <input type="text" class="form-control" id="profissao">
             </div>
+            <div class="col-4">
+              <label>REGISTRO:</label>
+              <input type="text" class="form-control" id="registro">
+            </div>
+            <div class="col-3">
+              <label>SETOR:</label>
+              <input type="text" class="form-control" id="setor">
+            </div>
+
           </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer bg-dark text-white">
           <button type="button" class="btn btn-secondary" onclick="fechar()" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-success" onclick="SalvarEdit()" data-dismiss="modal">Salvar</button>
         </div>
