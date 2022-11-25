@@ -145,7 +145,7 @@
     </form>
   </nav>
 
-	<!-- Login:admin, Senha: admin -->
+  <!-- Login:admin, Senha: admin -->
   <div class="card mb-3 mt-5 " id="PrimeiraParte" style="max-width: 22rem; margin-left: 35%">
     <div class="card-header">Logo Empresa</div>
     <div class="card-body">
@@ -177,16 +177,16 @@
         <div id="toolbar">
           <button class="btn btn-primary" onclick="cadastro()">CADASTRAR</button>
         </div>
-        <table id="table" data-toolbar="#toolbar" data-toggle="table" data-detail-formatter="detailFormatterusuario" data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, all]" class="table table-dark" data-search="true">
+        <table id="table" data-toolbar="#toolbar"  data-show-columns="true" data-toggle="table" data-detail-formatter="detailFormatterusuario" data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, all]" class="table table-dark" data-search="true">
           <thead>
             <tr>
-              <th data-field="registro" data-align="center">REGISTRO</th>
+              <th data-field="registro" data-align="center" data-sortable="true">REGISTRO</th>
               <th data-field="nome" data-align="center">NOME</th>
               <th data-field="idade" data-align="center">IDADE</th>
               <th data-field="cpf" data-align="center">CPF</th>
               <th data-field="Prof" data-align="center">PROFISSÃO</th>
               <th data-field="setor" data-align="center">SETOR</th>
-              <th data-field="nome" data-align="center" data-formatter="EditarItem">EDITAR</th>
+              <th data-field="nome" data-align="center" data-formatter="EditarItem" data-searchable="false">EDITAR</th>
             </tr>
           </thead>
         </table>
@@ -195,7 +195,7 @@
   </div>
   <!-- Modal -->
   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content">
         <div class="modal-header bg-dark text-white">
           <h5 class="modal-title" id="htexto">FUNCIONARIO</h5>
