@@ -5,6 +5,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <title>Empresa</title>
 
   <script src="https://kit.fontawesome.com/775fd40529.js" crossorigin="anonymous"></script>
@@ -19,9 +20,8 @@
         senha: $('#senha').val()
       }, function(data) {
         if (data == 1) {
-          $('#PrimeiraParte').addClass('d-none')
-          $('#SegundaParte').removeClass('d-none')
-
+          $('#PrimeiraParte').addClass('d-none');
+          $('#SegundaParte').removeClass('d-none');
           clicando();
         } else {
           $('#PrimeiraParte').removeClass('d-none');
@@ -70,6 +70,8 @@
       $('#profissao').val(professor);
       $('#cpf').val(cpf);
       $('#registro').val(registro);
+
+      // $('#setor').selectpicker('refresh');
       $('#setor').val(setor);
     }
 
@@ -100,8 +102,6 @@
         swal("OK!", "Alteração salva com sucesso!", "success");
 
       }
-      console.log(value);
-
     }
 
     function Sair() {
@@ -137,7 +137,7 @@
     <a class="navbar-brand" href="#">Empresa</a>
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="#">Home</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -152,13 +152,13 @@
       <div class="container shadow p-4 mb-2 bg-white rounded">
         <div class="row">
           <div class="col-12">
-            <Label>login</Label>
+            <Label>login:</Label>
             <input type="text" class="form-control" id="login" placeholder="Digite seu login">
           </div>
         </div>
         <div class="row">
           <div class="col-12">
-            <Label>Senha</Label>
+            <Label>Senha:</Label>
             <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
           </div>
         </div>
@@ -177,7 +177,7 @@
         <div id="toolbar">
           <button class="btn btn-primary" onclick="cadastro()">CADASTRAR</button>
         </div>
-        <table id="table" data-toolbar="#toolbar"  data-show-columns="true" data-toggle="table" data-detail-formatter="detailFormatterusuario" data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, all]" class="table table-dark" data-search="true">
+        <table id="table" data-toolbar="#toolbar" data-show-export="true" data-show-print="true" data-show-pagination-switch="true" data-show-columns="true" data-toggle="table" data-detail-formatter="detailFormatterusuario" data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, all]" class="table table-dark" data-search="true">
           <thead>
             <tr>
               <th data-field="registro" data-align="center" data-sortable="true">REGISTRO</th>
@@ -193,6 +193,7 @@
       </div>
     </div>
   </div>
+
   <!-- Modal -->
   <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog modal-xl" role="document">
@@ -208,31 +209,37 @@
             <div class="row">
               <div class="col-6">
                 <label>NOME:</label>
-                <input type="text" class="form-control" id="nome">
+                <input type="text" placeholder="Digite seu nome" class="form-control" id="nome">
               </div>
               <div class="col-2">
                 <label>IDADE:</label>
-                <input type="text" class="form-control" id="idade">
+                <input type="number" placeholder="Digite sua idade" class="form-control" id="idade" min="18" max="200">
               </div>
               <div class="col-4">
                 <label>CPF:</label>
-                <input type="text" class="form-control" id="cpf">
+                <input type="text" class="form-control" id="cpf" placeholder="000-000-000-00">
               </div>
             </div>
             <div class="row mt-3">
               <div class="col-5">
                 <label>PROFISSÃO:</label>
-                <input type="text" class="form-control" id="profissao">
+                <input type="text" class="form-control" id="profissao" placeholder="Digite sua profissão">
               </div>
               <div class="col-4">
                 <label>REGISTRO:</label>
-                <input type="text" class="form-control" id="registro">
+                <input type="number" class="form-control" id="registro" placeholder="Digite seu registro">
               </div>
-              <div class="col-3">
+              <div class=" form-group col-3">
                 <label>SETOR:</label>
-                <input type="text" class="form-control" id="setor">
+                <!-- <input type="text" class="form-control" id="setor" placeholder="Digite seu setor"> -->
+                <select id="setor" class="form-control selectpicker btn-dark">
+                <option value="">SELECIONE</option>
+                  <option value="TI">TI</option>
+                  <option value="CUSTOS">CUSTOS</option>
+                  <option value="RH">RH</option>
+                  <option value="DIRETORIA">DIRETORIA</option>
+                </select>
               </div>
-
             </div>
           </div>
         </form>
