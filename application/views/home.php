@@ -145,6 +145,7 @@
     </form>
   </nav>
 
+	<!-- Login:admin, Senha: admin -->
   <div class="card mb-3 mt-5 " id="PrimeiraParte" style="max-width: 22rem; margin-left: 35%">
     <div class="card-header">Logo Empresa</div>
     <div class="card-body">
