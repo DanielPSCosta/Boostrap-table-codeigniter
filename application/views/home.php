@@ -48,7 +48,6 @@
 
         },
       });
-
       ///////////////////////////////////////////
       //Caso seja necessario um retorno sem Ajax
       ///////////////////////////////////////////
@@ -57,16 +56,15 @@
       //   $("#table").bootstrapTable('removeAll');
       //   $("#table").bootstrapTable('append', JSON.parse(data));
       // })
-
     }
 
     function EditarItem(value, row) {
-      return '<button class="btn btn-primary" onclick="Editar(\'' + value + '\',\'' + row.idade + '\',\'' + row.Prof + '\',\'' + row.cpf + '\',\'' + row.registro + '\',\'' + row.setor + '\')"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar </button>';
+      return '<button class="btn btn-primary" onclick="Editar(\'' + value + '\',\'' + row.idade + '\',\'' + row.Prof + '\',\'' + row.cpf + '\',\'' + row.registro + '\',\'' + row.setor + '\')"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i> EDITAR </button>';
     }
 
     function Editar(value, idade, professor, cpf, registro, setor) {
       $('#exampleModalLong').modal('show');
-
+      $('#htexto').text('EDITAR DE FUNCIONARIO');
       $('#nome').val(value);
       $('#idade').val(idade);
       $('#profissao').val(professor);
@@ -95,13 +93,26 @@
       return html.join('')
     }
 
-    function SalvarEdit() {
-      swal("OK!", "Salvo com sucesso!", "success");
+    function SalvarEdit(value) {
+      if (value == 'CADASTRO DE FUNCIONARIO') {
+        swal("OK!", "Cadastro salva com sucesso!", "success");
+      } else {
+        swal("OK!", "Alteração salva com sucesso!", "success");
+
+      }
+      console.log(value);
+
     }
 
     function Sair() {
       $('#PrimeiraParte').removeClass('d-none');
       $('#SegundaParte').addClass('d-none');
+    }
+
+    function cadastro() {
+      $('#formulario_modal')[0].reset();
+      $('#exampleModalLong').modal('show');
+      $('#htexto').text('CADASTRO DE FUNCIONARIO');
     }
   </script>
 
@@ -160,9 +171,11 @@
   </div>
 
   <div id="SegundaParte" class="d-none">
-
     <div class="container-fluid shadow p-4 mb-5 bg-white rounded mt-5">
       <div class="col-12">
+        <div id="toolbar">
+          <button class="btn btn-primary" onclick="cadastro()">CADASTRAR</button>
+        </div>
         <table id="table" data-toolbar="#toolbar" data-toggle="table" data-detail-formatter="detailFormatterusuario" data-pagination="true" data-id-field="id" data-page-list="[10, 25, 50, 100, all]" class="table table-dark" data-search="true">
           <thead>
             <tr>
@@ -189,40 +202,42 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-6">
-              <label>NOME:</label>
-              <input type="text" class="form-control" id="nome">
+        <form id="formulario_modal">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <label>NOME:</label>
+                <input type="text" class="form-control" id="nome">
+              </div>
+              <div class="col-2">
+                <label>IDADE:</label>
+                <input type="text" class="form-control" id="idade">
+              </div>
+              <div class="col-4">
+                <label>CPD:</label>
+                <input type="text" class="form-control" id="cpf">
+              </div>
             </div>
-            <div class="col-2">
-              <label>IDADE:</label>
-              <input type="text" class="form-control" id="idade">
-            </div>
-            <div class="col-4">
-              <label>CPD:</label>
-              <input type="text" class="form-control" id="cpf">
-            </div>
-          </div>
-          <div class="row mt-3">
-            <div class="col-5">
-              <label>PROFISSÃO:</label>
-              <input type="text" class="form-control" id="profissao">
-            </div>
-            <div class="col-4">
-              <label>REGISTRO:</label>
-              <input type="text" class="form-control" id="registro">
-            </div>
-            <div class="col-3">
-              <label>SETOR:</label>
-              <input type="text" class="form-control" id="setor">
-            </div>
+            <div class="row mt-3">
+              <div class="col-5">
+                <label>PROFISSÃO:</label>
+                <input type="text" class="form-control" id="profissao">
+              </div>
+              <div class="col-4">
+                <label>REGISTRO:</label>
+                <input type="text" class="form-control" id="registro">
+              </div>
+              <div class="col-3">
+                <label>SETOR:</label>
+                <input type="text" class="form-control" id="setor">
+              </div>
 
+            </div>
           </div>
-        </div>
+        </form>
         <div class="modal-footer bg-dark text-white">
           <button type="button" class="btn btn-secondary" onclick="fechar()" data-dismiss="modal">Fechar</button>
-          <button type="button" class="btn btn-success" onclick="SalvarEdit()" data-dismiss="modal">Salvar</button>
+          <button type="button" class="btn btn-success" onclick="SalvarEdit($('#htexto').text())" data-dismiss="modal">Salvar</button>
         </div>
       </div>
     </div>
