@@ -215,7 +215,7 @@
                 <input type="text" class="form-control" id="idade">
               </div>
               <div class="col-4">
-                <label>CPD:</label>
+                <label>CPF:</label>
                 <input type="text" class="form-control" id="cpf">
               </div>
             </div>
