@@ -221,7 +221,7 @@
           </div>
         </div>
         <div class="modal-footer bg-dark text-white">
-          <button type="button" class="btn btn-secondary" onclick="fechar()" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" onclick="fechar()" data-dismiss="modal">Fechar</button>
           <button type="button" class="btn btn-success" onclick="SalvarEdit()" data-dismiss="modal">Salvar</button>
         </div>
       </div>
